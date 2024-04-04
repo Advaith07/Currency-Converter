@@ -1,5 +1,5 @@
-const BASE_URL =
-  "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies";
+const BASE_URL = "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies";
+
 
 const dropdowns = document.querySelectorAll(".dropdown select");
 const button=document.querySelector("form button");
@@ -53,11 +53,11 @@ button.addEventListener("click",async (evt)=>{
         amount.value="1";
     }
 
-    const URL=`${BASE_URL}/${fromcurrency.value.toLowerCase()}/${tocurrency.value.toLowerCase()}.json`;
+    const URL = `${BASE_URL}/${fromcurrency.value.toLowerCase()}.json`;
     console.log(URL);
     let response=await fetch(URL);
     let data=await response.json();
-    let rate=data[tocurrency.value.toLowerCase()];
+    let rate = data[fromcurrency.value.toLowerCase()][tocurrency.value.toLowerCase()]; 
     
     let finalamount=amountvalue*rate;
     msg.innerText=`${amountvalue} ${fromcurrency.value} = ${finalamount} ${tocurrency.value}`;
